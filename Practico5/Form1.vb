@@ -159,7 +159,9 @@ StrSacaValoresString_General_ErrTrap:
             If bc IsNot Nothing Then
                 Dim s As String = Convert.ToString(cell.Value)
             End If
+
             If (DataGridView.CurrentRow.Index <> filaElegida) Then
+
                 Select Case bc.Name
                     Case "ColEliminar" 'Poner el nombre de la columna donde se desa dar un evento
                         'aquí dentro poner las acciones cuando se precione el botón eliminar 
