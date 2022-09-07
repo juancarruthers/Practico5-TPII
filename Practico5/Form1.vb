@@ -112,7 +112,7 @@ StrSacaValoresString_General_ErrTrap:
 
     Private Sub BNuevo_Click(sender As Object, e As EventArgs) Handles BNuevo.Click
         BAgregar.Enabled = True
-        'BModificar.Enabled = False
+        BModificar.Enabled = False
         TNombre.Text = ""
         TApellido.Text = ""
         sexo = "n"
@@ -198,5 +198,23 @@ StrSacaValoresString_General_ErrTrap:
         Else
             MsgBox("Tiene campos sin completar", vbExclamation + vbOKOnly, "ERROR")
         End If
+    End Sub
+
+    Private Sub DataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellContentDoubleClick
+        BAgregar.Enabled = False
+        BModificar.Enabled = True
+        TNombre.Text = DataGridView.CurrentRow().Cells().Item(1).Value
+        TApellido.Text = DataGridView.CurrentRow().Cells().Item(0).Value
+        sexo = DataGridView.CurrentRow().Cells().Item(3).Value
+        If (sexo = "Mujer") Then
+            RBMujer.Checked = True
+        Else
+            RBHombre.Checked = True
+        End If
+        TSaldo.Text = DataGridView.CurrentRow().Cells().Item(5).Value
+        TFoto.Text = DataGridView.CurrentRow().Cells().Item(7).Value
+        DateFechaNac.Value = DataGridView.CurrentRow().Cells().Item(2).Value
+        PBFoto.Image = DataGridView.CurrentRow().Cells().Item(6).Value
+        filaElegida = DataGridView.CurrentRow().Index
     End Sub
 End Class
