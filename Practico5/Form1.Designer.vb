@@ -22,13 +22,14 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel = New System.Windows.Forms.Panel()
+        Me.BAgregar = New System.Windows.Forms.Button()
         Me.BNuevo = New System.Windows.Forms.Button()
         Me.BFoto = New System.Windows.Forms.Button()
         Me.RBMujer = New System.Windows.Forms.RadioButton()
@@ -54,7 +55,7 @@ Partial Class Form1
         Me.ColRuta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.PBFoto = New System.Windows.Forms.PictureBox()
-        Me.BAgregar = New System.Windows.Forms.Button()
+        Me.BModificar = New System.Windows.Forms.Button()
         Me.Panel.SuspendLayout()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBFoto, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,6 +64,7 @@ Partial Class Form1
         'Panel
         '
         Me.Panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel.Controls.Add(Me.BModificar)
         Me.Panel.Controls.Add(Me.BAgregar)
         Me.Panel.Controls.Add(Me.BNuevo)
         Me.Panel.Controls.Add(Me.BFoto)
@@ -82,6 +84,18 @@ Partial Class Form1
         Me.Panel.Name = "Panel"
         Me.Panel.Size = New System.Drawing.Size(344, 358)
         Me.Panel.TabIndex = 0
+        '
+        'BAgregar
+        '
+        Me.BAgregar.Image = Global.Practico5.My.Resources.Resources.guardar
+        Me.BAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BAgregar.Location = New System.Drawing.Point(16, 297)
+        Me.BAgregar.Name = "BAgregar"
+        Me.BAgregar.Size = New System.Drawing.Size(93, 45)
+        Me.BAgregar.TabIndex = 17
+        Me.BAgregar.Text = "Agregar"
+        Me.BAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BAgregar.UseVisualStyleBackColor = True
         '
         'BNuevo
         '
@@ -252,34 +266,34 @@ Partial Class Form1
         'ColApellido
         '
         Me.ColApellido.DataPropertyName = "juan"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ColApellido.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ColApellido.DefaultCellStyle = DataGridViewCellStyle1
         Me.ColApellido.HeaderText = "Apellido"
         Me.ColApellido.Name = "ColApellido"
         Me.ColApellido.ReadOnly = True
         '
         'ColNombre
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ColNombre.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ColNombre.DefaultCellStyle = DataGridViewCellStyle2
         Me.ColNombre.HeaderText = "Nombre"
         Me.ColNombre.Name = "ColNombre"
         Me.ColNombre.ReadOnly = True
         '
         'ColFechaNac
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.ColFechaNac.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.ColFechaNac.DefaultCellStyle = DataGridViewCellStyle3
         Me.ColFechaNac.HeaderText = "Fecha de Nacimiento"
         Me.ColFechaNac.Name = "ColFechaNac"
         Me.ColFechaNac.ReadOnly = True
         '
         'ColSexo
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.ColSexo.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.ColSexo.DefaultCellStyle = DataGridViewCellStyle4
         Me.ColSexo.HeaderText = "Sexo"
         Me.ColSexo.Name = "ColSexo"
         Me.ColSexo.ReadOnly = True
@@ -292,8 +306,8 @@ Partial Class Form1
         '
         'ColSaldo
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.ColSaldo.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.ColSaldo.DefaultCellStyle = DataGridViewCellStyle5
         Me.ColSaldo.HeaderText = "Saldo"
         Me.ColSaldo.Name = "ColSaldo"
         Me.ColSaldo.ReadOnly = True
@@ -310,8 +324,8 @@ Partial Class Form1
         '
         'ColRuta
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.ColRuta.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.ColRuta.DefaultCellStyle = DataGridViewCellStyle6
         Me.ColRuta.HeaderText = "Ruta"
         Me.ColRuta.Name = "ColRuta"
         Me.ColRuta.ReadOnly = True
@@ -331,17 +345,17 @@ Partial Class Form1
         Me.PBFoto.TabIndex = 2
         Me.PBFoto.TabStop = False
         '
-        'BAgregar
+        'BModificar
         '
-        Me.BAgregar.Image = Global.Practico5.My.Resources.Resources.guardar
-        Me.BAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BAgregar.Location = New System.Drawing.Point(16, 297)
-        Me.BAgregar.Name = "BAgregar"
-        Me.BAgregar.Size = New System.Drawing.Size(93, 45)
-        Me.BAgregar.TabIndex = 17
-        Me.BAgregar.Text = "Agregar"
-        Me.BAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BAgregar.UseVisualStyleBackColor = True
+        Me.BModificar.Image = Global.Practico5.My.Resources.Resources.editar_2
+        Me.BModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BModificar.Location = New System.Drawing.Point(240, 297)
+        Me.BModificar.Name = "BModificar"
+        Me.BModificar.Size = New System.Drawing.Size(88, 45)
+        Me.BModificar.TabIndex = 18
+        Me.BModificar.Text = "Modificar"
+        Me.BModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BModificar.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -389,4 +403,5 @@ Partial Class Form1
     Friend WithEvents ColFoto As DataGridViewImageColumn
     Friend WithEvents ColRuta As DataGridViewTextBoxColumn
     Friend WithEvents BAgregar As Button
+    Friend WithEvents BModificar As Button
 End Class

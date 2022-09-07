@@ -171,4 +171,32 @@ StrSacaValoresString_General_ErrTrap:
             End If
         End If
     End Sub
+
+    Private Sub BModificar_Click(sender As Object, e As EventArgs) Handles BModificar.Click
+        Dim condicion As Boolean = (DataGridView.Rows(filaElegida).Cells.Item(7).Value = TFoto.Text)
+        If ((TNombre.Text <> "") And (TApellido.Text <> "") And (sexo <> "n") And (TSaldo.Text <> "") And (TFoto.Text <> "")) Then
+            If Not (My.Computer.FileSystem.FileExists(TFoto.Text)) Or condicion Then
+                If Not (condicion) Then
+                    My.Computer.FileSystem.DeleteFile(DataGridView.Rows(filaElegida).Cells.Item(7).Value)
+                    My.Computer.FileSystem.CopyFile(PBFoto.ImageLocation, TFoto.Text)
+                End If
+                DataGridView.Rows(filaElegida).Cells.Item(0).Value = TApellido.Text
+                DataGridView.Rows(filaElegida).Cells.Item(1).Value = TNombre.Text
+                DataGridView.Rows(filaElegida).Cells.Item(2).Value = DateFechaNac.Value.ToShortDateString
+                DataGridView.Rows(filaElegida).Cells.Item(3).Value = sexo
+                DataGridView.Rows(filaElegida).Cells.Item(5).Value = TSaldo.Text
+                DataGridView.Rows(filaElegida).Cells.Item(6).Value = PBFoto.Image
+                DataGridView.Rows(filaElegida).Cells.Item(7).Value = TFoto.Text
+                If TSaldo.Text <= 50 Then
+                    DataGridView.Rows(filaElegida).DefaultCellStyle.BackColor = Color.Red
+                Else
+                    DataGridView.Rows(filaElegida).DefaultCellStyle.BackColor = Color.White
+                End If
+            Else
+                MsgBox("Esa imagen ya esta guardada", vbExclamation + vbOKOnly, "ERROR")
+            End If
+        Else
+            MsgBox("Tiene campos sin completar", vbExclamation + vbOKOnly, "ERROR")
+        End If
+    End Sub
 End Class
