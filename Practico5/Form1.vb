@@ -112,7 +112,7 @@ StrSacaValoresString_General_ErrTrap:
 
     Private Sub BNuevo_Click(sender As Object, e As EventArgs) Handles BNuevo.Click
         BAgregar.Enabled = True
-        'BModificar.Enabled = False
+        BModificar.Enabled = False
         TNombre.Text = ""
         TApellido.Text = ""
         sexo = "n"
@@ -159,7 +159,9 @@ StrSacaValoresString_General_ErrTrap:
             If bc IsNot Nothing Then
                 Dim s As String = Convert.ToString(cell.Value)
             End If
-            If ((DataGridView.CurrentRow.Index <> filaElegida)) Then
+
+            If (DataGridView.CurrentRow.Index <> filaElegida) Then
+
                 Select Case bc.Name
                     Case "ColEliminar" 'Poner el nombre de la columna donde se desa dar un evento
                         'aquí dentro poner las acciones cuando se precione el botón eliminar 
@@ -170,5 +172,51 @@ StrSacaValoresString_General_ErrTrap:
                 MsgBox("No puede eliminar el registro que tiene abierto", vbExclamation + vbOKOnly, "ERROR")
             End If
         End If
+    End Sub
+
+    Private Sub BModificar_Click(sender As Object, e As EventArgs) Handles BModificar.Click
+        Dim condicion As Boolean = (DataGridView.Rows(filaElegida).Cells.Item(7).Value = TFoto.Text)
+        If ((TNombre.Text <> "") And (TApellido.Text <> "") And (sexo <> "n") And (TSaldo.Text <> "") And (TFoto.Text <> "")) Then
+            If Not (My.Computer.FileSystem.FileExists(TFoto.Text)) Or condicion Then
+                If Not (condicion) Then
+                    My.Computer.FileSystem.DeleteFile(DataGridView.Rows(filaElegida).Cells.Item(7).Value)
+                    My.Computer.FileSystem.CopyFile(PBFoto.ImageLocation, TFoto.Text)
+                End If
+                DataGridView.Rows(filaElegida).Cells.Item(0).Value = TApellido.Text
+                DataGridView.Rows(filaElegida).Cells.Item(1).Value = TNombre.Text
+                DataGridView.Rows(filaElegida).Cells.Item(2).Value = DateFechaNac.Value.ToShortDateString
+                DataGridView.Rows(filaElegida).Cells.Item(3).Value = sexo
+                DataGridView.Rows(filaElegida).Cells.Item(5).Value = TSaldo.Text
+                DataGridView.Rows(filaElegida).Cells.Item(6).Value = PBFoto.Image
+                DataGridView.Rows(filaElegida).Cells.Item(7).Value = TFoto.Text
+                If TSaldo.Text <= 50 Then
+                    DataGridView.Rows(filaElegida).DefaultCellStyle.BackColor = Color.Red
+                Else
+                    DataGridView.Rows(filaElegida).DefaultCellStyle.BackColor = Color.White
+                End If
+            Else
+                MsgBox("Esa imagen ya esta guardada", vbExclamation + vbOKOnly, "ERROR")
+            End If
+        Else
+            MsgBox("Tiene campos sin completar", vbExclamation + vbOKOnly, "ERROR")
+        End If
+    End Sub
+
+    Private Sub DataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellContentDoubleClick
+        BAgregar.Enabled = False
+        BModificar.Enabled = True
+        TNombre.Text = DataGridView.CurrentRow().Cells().Item(1).Value
+        TApellido.Text = DataGridView.CurrentRow().Cells().Item(0).Value
+        sexo = DataGridView.CurrentRow().Cells().Item(3).Value
+        If (sexo = "Mujer") Then
+            RBMujer.Checked = True
+        Else
+            RBHombre.Checked = True
+        End If
+        TSaldo.Text = DataGridView.CurrentRow().Cells().Item(5).Value
+        TFoto.Text = DataGridView.CurrentRow().Cells().Item(7).Value
+        DateFechaNac.Value = DataGridView.CurrentRow().Cells().Item(2).Value
+        PBFoto.Image = DataGridView.CurrentRow().Cells().Item(6).Value
+        filaElegida = DataGridView.CurrentRow().Index
     End Sub
 End Class
