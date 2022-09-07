@@ -151,4 +151,24 @@ StrSacaValoresString_General_ErrTrap:
             DataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Red
         End If
     End Sub
+
+    Private Sub DataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellContentClick
+        Dim cell As DataGridViewButtonCell = TryCast(DataGridView.CurrentCell, DataGridViewButtonCell)
+        If cell IsNot Nothing Then 'Verifica que la celdas tengan informacion 
+            Dim bc As DataGridViewButtonColumn = TryCast(DataGridView.Columns(e.ColumnIndex), DataGridViewButtonColumn) 'Genero una variable que contiene el boton en el datagrid 
+            If bc IsNot Nothing Then
+                Dim s As String = Convert.ToString(cell.Value)
+            End If
+            If DataGridView.CurrentRow.Index <> filaElegida Then
+                Select Case bc.Name
+                    Case "ColEliminar" 'Poner el nombre de la columna donde se desa dar un evento
+                        'aquí dentro poner las acciones cuando se precione el botón eliminar 
+                        My.Computer.FileSystem.DeleteFile(DataGridView.Rows(DataGridView.CurrentRow.Index).Cells.Item(7).Value)
+                        DataGridView.Rows.Remove(DataGridView.CurrentRow)
+                End Select
+            Else
+                MsgBox("No puede eliminar el registro que tiene abierto", vbExclamation + vbOKOnly, "ERROR")
+            End If
+        End If
+    End Sub
 End Class
