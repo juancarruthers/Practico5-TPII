@@ -145,4 +145,10 @@ StrSacaValoresString_General_ErrTrap:
             MsgBox("Tiene campos sin completar", vbExclamation + vbOKOnly, "ERROR")
         End If
     End Sub
+
+    Private Sub DataGridView_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles DataGridView.RowsAdded
+        If DataGridView.Rows(e.RowIndex).Cells.Item(5).Value <= 50 Then
+            DataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Red
+        End If
+    End Sub
 End Class
