@@ -111,7 +111,7 @@ StrSacaValoresString_General_ErrTrap:
     End Sub
 
     Private Sub BNuevo_Click(sender As Object, e As EventArgs) Handles BNuevo.Click
-        'BAgregar.Enabled = True
+        BAgregar.Enabled = True
         'BModificar.Enabled = False
         TNombre.Text = ""
         TApellido.Text = ""
@@ -124,4 +124,25 @@ StrSacaValoresString_General_ErrTrap:
         PBFoto.Image = Practico5.My.Resources.avatar
     End Sub
 
+    Private Sub BAgregar_Click(sender As Object, e As EventArgs) Handles BAgregar.Click
+        If ((TNombre.Text <> "") And (TApellido.Text <> "") And (sexo <> "n") And (TSaldo.Text <> "") And (TFoto.Text <> "")) Then
+            If Not (My.Computer.FileSystem.FileExists(TFoto.Text)) Then
+                My.Computer.FileSystem.CopyFile(PBFoto.ImageLocation, TFoto.Text)
+                DataGridView.Rows.Add(TApellido.Text, TNombre.Text, DateFechaNac.Value.ToShortDateString, sexo, "Eliminar", TSaldo.Text, PBFoto.Image, TFoto.Text)
+                TNombre.Text = ""
+                TApellido.Text = ""
+                sexo = "n"
+                RBHombre.Checked = False
+                RBMujer.Checked = False
+                TSaldo.Text = ""
+                TFoto.Text = ""
+                DateFechaNac.Value = New Date(1977, 1, 1, 0, 0, 0, 0)
+                PBFoto.Image = Practico5.My.Resources.avatar
+            Else
+                MsgBox("Esa imagen ya esta guardada", vbExclamation + vbOKOnly, "ERROR")
+            End If
+        Else
+            MsgBox("Tiene campos sin completar", vbExclamation + vbOKOnly, "ERROR")
+        End If
+    End Sub
 End Class
